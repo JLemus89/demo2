@@ -3,7 +3,9 @@ package com.example.demo2.entity;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
+@Table(name="employee")
 public class Employee {
 
     @Id
@@ -31,10 +33,6 @@ public class Employee {
     @Column(name = "createdAt")
     private Date createdAt;
 
-    public Employee() {
-
-    }
-
     public Employee(long id, String email, Enterprise enterprise, Profile profile, Transaction transaction, Date updateAt, Date createdAt) {
         this.id = id;
         this.email = email;
@@ -43,6 +41,10 @@ public class Employee {
         this.transaction = transaction;
         this.updateAt = updateAt;
         this.createdAt = createdAt;
+    }
+
+    public Employee() {
+
     }
 
     public long getId() {
