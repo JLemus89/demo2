@@ -1,32 +1,37 @@
 package com.example.demo2.controller;
 
 import com.example.demo2.entity.Employee;
+
 import com.example.demo2.services.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class EmployeeController {
 
-    EmployeeService services;
+    @Autowired
+    EmployeeService employeeServices;
 
-    public EmployeeController(EmployeeService services){
-        this.services=services;
-    }
-
-    @GetMapping ("/employee")
-    public List<Employee> EmployeeList(){
-        return this.services.getEmployeeList();
+    @GetMapping("/employee")
+    private List<Employee> verEmployee(){
+        return employeeServices.verEmployee();
     }
 
     @PostMapping("/employee")
-    public Employee createEmployee(@RequestBody Employee employee){
-        return this.services.createEmployee(employee);
+    private void crearYActualizarEmployee(@RequestBody Employee employee){
+        employeeServices.crearYActualizarEmployee(employee);
     }
 
+    @DeleteMapping("employee/{id}")
+    private void eliminarEmployee(@PathVariable ("id") Long id){
+        employeeServices.eliminarEmployee(id);
+    }
+
+    @PutMapping("/employee")
+    private  void  editarEmployee(@RequestBody Employee employee){
+        employeeServices.crearYActualizarEmployee(employee);
+    }
 
 }

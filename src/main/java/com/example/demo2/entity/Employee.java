@@ -10,6 +10,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private long id;
 
     @Column(unique = true, name= "email")
@@ -27,18 +28,24 @@ public class Employee {
     @ManyToOne
     private Transaction transaction;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Enum_RolName")
+    private Enum_RolName Enum_RolName;
+
 
     @Column(name = "updateAt")
     private Date updateAt;
     @Column(name = "createdAt")
     private Date createdAt;
 
-    public Employee(long id, String email, Enterprise enterprise, Profile profile, Transaction transaction, Date updateAt, Date createdAt) {
+
+    public Employee(long id, String email, Enterprise enterprise, Profile profile, Transaction transaction, com.example.demo2.entity.Enum_RolName enum_RolName, Date updateAt, Date createdAt) {
         this.id = id;
         this.email = email;
         this.enterprise = enterprise;
         this.profile = profile;
         this.transaction = transaction;
+        Enum_RolName = enum_RolName;
         this.updateAt = updateAt;
         this.createdAt = createdAt;
     }
@@ -85,6 +92,14 @@ public class Employee {
 
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
+    }
+
+    public com.example.demo2.entity.Enum_RolName getEnum_RolName() {
+        return Enum_RolName;
+    }
+
+    public void setEnum_RolName(com.example.demo2.entity.Enum_RolName enum_RolName) {
+        Enum_RolName = enum_RolName;
     }
 
     public Date getUpdateAt() {

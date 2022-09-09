@@ -1,31 +1,38 @@
 package com.example.demo2.controller;
 
-import com.example.demo2.entity.Profile;
+
 import com.example.demo2.entity.Transaction;
 import com.example.demo2.services.TransactionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class TransactionController {
 
-    TransactionService services;
+    @Autowired
+    TransactionService transactionService;
 
-    public TransactionController(TransactionService services){
-        this.services=services;
-    }
 
     @GetMapping("/transaction")
-    public List<Transaction> TransactionList(){
-        return this.services.getTransactionList();
+    private List<Transaction> verTransaction(){
+        return transactionService.verTransaction();
     }
 
     @PostMapping("/transaction")
-    public Transaction createTransaction(@RequestBody Transaction transaction){
-        return this.services.createTransaction(transaction);
+    private void crearYActualizarTransaction(@RequestBody Transaction transaction){
+        transactionService.crearYActualizarTransaction(transaction);
     }
+
+    @DeleteMapping("transaction/{id}")
+    private void eliminarTransaction(@PathVariable ("id") Long id){
+        transactionService.eliminarTransaction(id);
+    }
+
+    @PutMapping("/transaction")
+    private  void  editarTransaction(@RequestBody Transaction transaction){
+        transactionService.crearYActualizarTransaction(transaction);
+    }
+
 }

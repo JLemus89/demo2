@@ -1,14 +1,27 @@
 package com.example.demo2.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Date;
 
+/*Etiquetas para Springboot y no tener que incluir constructores,constructores vacios,SET-GET, ToString
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data// @Getter-@Setter
+@ToString
+*/
 @Entity
 @Table(name="enterprise")
 public class Enterprise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private long id;
 
     @Column(unique = true, name = "name")
