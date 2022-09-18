@@ -1,4 +1,4 @@
-package com.example.demo2.entity;
+package com.example.demo2.enums;
 
 
 import javax.persistence.Table;

@@ -15,19 +15,27 @@ public class TransactionService {
     @Autowired
     TransactionRepository transactionRepository;
 
-    public void crearYActualizarTransaction(Transaction transaction){
-        transactionRepository.save(transaction);
+//    public void crearYActualizarTransaction(Transaction transaction){
+//        transactionRepository.save(transaction);
+//    }
+
+
+    public Boolean createTasnsaction(Transaction transaction){
+        if(transaction.getId()==0L){
+            this.transactionRepository.save(transaction);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public List<Transaction> verTransaction(){
         List<Transaction> transactions = new ArrayList<>();
         transactions.addAll(transactionRepository.findAll());
         return transactions;
-
     }
 
     public void eliminarTransaction(Long id){
         transactionRepository.deleteById(id);
     }
-
 }

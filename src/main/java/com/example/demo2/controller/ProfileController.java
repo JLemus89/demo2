@@ -4,37 +4,53 @@ import com.example.demo2.entity.Enterprise;
 import com.example.demo2.entity.Profile;
 import com.example.demo2.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ProfileController {
 
     @Autowired
     ProfileService profileservices;
 
     @GetMapping("/profile")
-    private List<Profile> verProfile(){
-        return profileservices.verProfile();
+    public String seeProfile(Model model){
+        model.addAttribute("Profile", profileservices.seeProfile());
+        return "profile";
+    }
+
+    @GetMapping("/add-profile")
+    private String seeFormProfile(Profile profile){
+        return "add-profile";
     }
 
     @PostMapping("/profile")
-    private void crearYActualizarProfile(@RequestBody Profile profile){
-        profileservices.crearYActualizarProfile(profile);
+    private String createProfile(Profile profile){
+        profileservices.createAndUpdateProfile(profile);
+        return "redirect:/profile";
     }
 
-    @DeleteMapping("profile/{id}")
-    private void eliminarProfile(@PathVariable ("id") Long id){
-        profileservices.eliminarProfile(id);
+    @GetMapping("/profile/delete/{id}")
+    private String deleteProfile(@PathVariable("id") Long id){
+        profileservices.deleteProfile(id);
+        return "redirect:/profile";
     }
 
-    @PutMapping("/profile")
-    private  void  editarProfile(@RequestBody Profile profile){
-        profileservices.crearYActualizarProfile(profile);
+    @GetMapping("/profile/edit/{id}")
+    private String seeProfileForId(@PathVariable("id") Long id, Model model){
+        Profile profile = profileservices.seeProfileForId(id);
+        model.addAttribute("profile", profile);
+        return "update-enterprise";
     }
 
-
-
-
+    @PostMapping("/profile/update/{id}")
+    private String editProfile(@PathVariable("id") Long id, Profile profile){
+        profileservices.createAndUpdateProfile(profile);
+        return "redirect:/profile";
+    }
 }
+
+

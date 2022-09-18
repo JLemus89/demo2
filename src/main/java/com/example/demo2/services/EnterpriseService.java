@@ -16,21 +16,19 @@ public class EnterpriseService {
     @Autowired
     EnterpriseRepository enterpriseRepository;
 
-    public void crearYActualizarEnterprise(Enterprise enterprise){
+    public void createAndUpdateEnterprise(Enterprise enterprise){
         enterpriseRepository.save(enterprise);
     }
 
-    public List<Enterprise> verEnterprise(){
-        List<Enterprise> enterprises = new ArrayList<>();
-        enterprises.addAll(enterpriseRepository.findAll());
-        return enterprises;
-
+    public List<Enterprise> seeEnterprise(){
+        return enterpriseRepository.findAll();
     }
 
-    public void eliminarEnterprise(Long id){
+    public Enterprise seeEnterpriseForId(Long id){
+        return enterpriseRepository.findById(id).get();
+    }
+
+    public void deleteEnterprise(Long id){
         enterpriseRepository.deleteById(id);
     }
-
-
-
 }

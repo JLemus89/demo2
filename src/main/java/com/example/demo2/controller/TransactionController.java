@@ -20,19 +20,24 @@ public class TransactionController {
         return transactionService.verTransaction();
     }
 
-    @PostMapping("/transaction")
-    private void crearYActualizarTransaction(@RequestBody Transaction transaction){
-        transactionService.crearYActualizarTransaction(transaction);
-    }
+//    @PostMapping("/transaction")
+//    private void crearYActualizarTransaction(@RequestBody Transaction transaction){
+//        transactionService.crearYActualizarTransaction(transaction);
+//    }
 
     @DeleteMapping("transaction/{id}")
     private void eliminarTransaction(@PathVariable ("id") Long id){
         transactionService.eliminarTransaction(id);
     }
 
-    @PutMapping("/transaction")
-    private  void  editarTransaction(@RequestBody Transaction transaction){
-        transactionService.crearYActualizarTransaction(transaction);
+//    @PutMapping("/transaction")
+//    private  void  editarTransaction(@RequestBody Transaction transaction){
+//        transactionService.crearYActualizarTransaction(transaction);
+//    }
+
+    @GetMapping
+    private void createTasnsaction(@RequestBody Transaction transaction){
+        transactionService.createTasnsaction(transaction);
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.demo2.services;
 
 import com.example.demo2.entity.Employee;
 
+import com.example.demo2.entity.Enterprise;
 import com.example.demo2.repositories.EmployeeRepository;
 import com.example.demo2.repositories.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +17,19 @@ public class EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
-    public void crearYActualizarEmployee(Employee employee){
+    public void createAndUpdateEmployee(Employee employee){
         employeeRepository.save(employee);
     }
 
-    public List<Employee> verEmployee(){
-        List<Employee> employees = new ArrayList<>();
-        employees.addAll(employeeRepository.findAll());
-        return employees;
-
+    public List<Employee> seeEmployee(){
+        return employeeRepository.findAll();
     }
 
-    public void eliminarEmployee(Long id){
+    public Employee seeEmployeeForId(Long id){
+        return employeeRepository.findById(id).get();
+    }
+
+    public void deleteEmployee(Long id){
         employeeRepository.deleteById(id);
     }
-
-
 }

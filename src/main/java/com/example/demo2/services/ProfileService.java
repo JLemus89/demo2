@@ -15,21 +15,19 @@ public class ProfileService {
     @Autowired
     ProfileRepository profileRepository;
 
-    public void crearYActualizarProfile(Profile profile){
+    public void createAndUpdateProfile(Profile profile){
         profileRepository.save(profile);
     }
 
-    public List<Profile> verProfile(){
-        List<Profile> profiles = new ArrayList<>();
-        profiles.addAll(profileRepository.findAll());
-        return profiles;
-
+    public List<Profile> seeProfile(){
+        return profileRepository.findAll();
     }
 
-    public void eliminarProfile(Long id){
+    public Profile seeProfileForId(Long id){
+        return profileRepository.findById(id).get();
+    }
+
+    public void deleteProfile(Long id){
         profileRepository.deleteById(id);
     }
-
-
-
 }
