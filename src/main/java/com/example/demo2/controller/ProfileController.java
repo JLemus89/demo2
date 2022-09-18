@@ -1,14 +1,11 @@
 package com.example.demo2.controller;
 
-import com.example.demo2.entity.Enterprise;
 import com.example.demo2.entity.Profile;
 import com.example.demo2.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class ProfileController {
@@ -43,7 +40,7 @@ public class ProfileController {
     private String seeProfileForId(@PathVariable("id") Long id, Model model){
         Profile profile = profileservices.seeProfileForId(id);
         model.addAttribute("profile", profile);
-        return "update-enterprise";
+        return "update-profile";
     }
 
     @PostMapping("/profile/update/{id}")

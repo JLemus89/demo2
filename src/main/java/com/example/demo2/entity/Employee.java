@@ -29,6 +29,10 @@ public class Employee {
     @JoinColumn(name = "enterprise")
     private Enterprise enterprise;
 
+    @ManyToOne
+    @JoinColumn(name = "transaction")
+    private Transaction transaction;
+
     @JoinColumn(name = "profile")
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
