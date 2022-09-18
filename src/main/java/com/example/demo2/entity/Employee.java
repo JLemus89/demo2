@@ -3,7 +3,6 @@ package com.example.demo2.entity;
 import com.example.demo2.enums.Enum_RolName;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.util.Date;
 
